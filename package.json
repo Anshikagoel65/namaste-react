@@ -1,0 +1,39 @@
+{
+  "name": "hey-react",
+  "version": "1.0.0",
+  "description": "This is hello from Anshika",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anshikagoel65/namaste-react.git"
+  },
+  "keywords": [
+    "react",
+    "namaste",
+    "react",
+    "Anshika",
+    "goel"
+  ],
+  "author": "Anshika Goel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Anshikagoel65/namaste-react/issues"
+  },
+  "homepage": "https://github.com/Anshikagoel65/namaste-react#readme",
+  "devDependencies": {
+    "parcel": "^2.13.2",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.3.0",
+    "react-dom": "^18.3.1",
+     "react-router-dom": "^6.23.1"
+  },
+  "browsersList": [
+    "last 2 versions"
+  ]
+}
