@@ -1,13 +1,16 @@
 import RestaurantCard from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import userContext from "../utils/userContext";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSerachText] = useState("");
+
+  console.log(listOfRestaurants);
 
   useEffect(() => {
     fetchData();
@@ -35,7 +38,9 @@ const Body = () => {
         Looks like you're offline!! Please check your internet connection;
       </h1>
     );
-  };
+  }
+
+  const { loggedInUser, setUserInfo } = useContext(userContext);
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
@@ -55,7 +60,8 @@ const Body = () => {
               setFilteredRestaurant(filteredRestaurant);
             }}
           />
-          <button className="px-4 py-1 bg-green-100 m-4 rounded-lg"
+          <button
+            className="px-4 py-1 bg-green-100 m-4 rounded-lg"
             onClick={() => {
               const filteredRestaurant = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -67,17 +73,25 @@ const Body = () => {
           </button>
         </div>
         <div className="search mx-4 my-2 p-4 flex items-center">
-        <button
-          className="px-4 py-1 bg-gray-100 rounded-lg"
-          onClick={() => {
-            const filteredList = listOfRestaurants.filter(
-              (res) => res.info.avgRating > 4.5
-            );
-            setFilteredRestaurant(filteredList);
-          }}
-        >
-          Top Rated Restaurants
-        </button>
+          <button
+            className="px-4 py-1 bg-gray-100 rounded-lg"
+            onClick={() => {
+              const filteredList = listOfRestaurants.filter(
+                (res) => res.info.avgRating > 4.5
+              );
+              setFilteredRestaurant(filteredList);
+            }}
+          >
+            Top Rated Restaurants
+          </button>
+        </div>
+        <div className="search m-4 p-4 flex items-center">
+          <label>Username : </label>
+          <input
+            className="border border-black p-2"
+            value={loggedInUser}
+            onChange={(e) => setUserInfo(e.target.value)}
+          />
         </div>
       </div>
       <div className="flex flex-wrap">
